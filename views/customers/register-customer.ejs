@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Register Customer</title>
+    </head>
+    <body>
+        <h1>Customer Sign Up</h1>
+            <% if(typeof errors !== 'undefined'){ %>
+                <% errors.forEach(err =>{ %>
+                <p> <%= err.message %> </p>    
+                <% }) %>
+            <% } %>
+        
+        <form action="/signup/customer" method="post">
+            Name: <br>
+            <input type="text" name="name" value=""><br>
+            Email: <br>
+            <input type="text" name="email" value=""><br>
+            Password: <br>
+            <input type="password" name="password" value=""><br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
