@@ -1,1 +1,1 @@
-# Omzetin
+# Omzetin Pair Project
