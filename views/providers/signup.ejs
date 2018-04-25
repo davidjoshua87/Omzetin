@@ -11,19 +11,19 @@
     <h2>Welcome to OMZETIN</h2>
     <ul class="nav nav-pills">
       <li role="presentation"><a href="/">HOME</a></li>
-      <li role="presentation"><a href="/signup/provider">SIGNUP</a></li>
-      <li role="presentation"><a href="/login/provider">LOGIN</a></li>
-      <li role="presentation"><a href="/logout/provider">LOGOUT</a></li>
+      <li role="presentation"><a href="/customer/signup">SIGNUP</a></li>
+      <li role="presentation"><a href="/customer/login">LOGIN</a></li>
+      <li role="presentation"><a href="/">LOGOUT</a></li>
     </ul>
     <hr>
 
-    <% if (typeof err !== 'undefined') { %>
+    <% if (typeof errors !== 'undefined') { %>
       <div class="alert alert-danger" role="alert">
-        <%= err.message %>
+        <%= errors.message %>
       </div>
       <% } %>
 
-        <h2>Signup Provider</h2>
+        <h2>Signup Customer</h2>
 
         <div class="row">
 
@@ -31,7 +31,7 @@
 
             <div class="well">
 
-              <form class="form" action="/signup/provider" method="POST">
+              <form class="form" action="/customer/signup" method="POST">
 
                 <div class="row">
                   <div class="col-xs-12">
@@ -56,28 +56,6 @@
                     </div>
                   </div>
                 </div>
-
-
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="service">Service</label><br>
-                      <select class="form-control" name="service" autofocus required>
-                    <option value="logo">Logo</option>
-                    <option value="web_design">Design Web</option>
-                    <option value="poster">Poster</option>
-                    <option value="banner">Design</option>
-                  </select>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="text" name="price" value="" class="form-control" required>
-                    </div>
-                  </div>
-                </div>
-
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>

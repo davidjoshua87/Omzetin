@@ -4,18 +4,18 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 
 
-router.get('/login/customer', (req, res)=>{
+router.get('/login', (req, res)=>{
     res.render('customers/login-customer.ejs', {title: 'Login Customer'})
 })
 
-router.get('/signup/customer', (req, res)=>{
+router.get('/signup', (req, res)=>{
     res.render('customers/register-customer.ejs', {title: 'Customer Form'})
 })
 
-router.post('/signup/customer', (req, res)=>{
+router.post('/signup', (req, res)=>{
    model.Customer.create(req.body)
    .then(customer =>{
-       res.redirect('/login/customer')
+       res.redirect('/customer/login')
    })
    .catch(( { errors } ) =>{
        res.render('customers/register-customer.ejs', {errors})
