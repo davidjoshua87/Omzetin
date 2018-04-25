@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/', indexRoutes);
 app.use('/', providersRoutes);
-app.use('/customers', routeCustomer)
+app.use('/', routeCustomer)
 
 // -----------------------------------------------------------------------------
 app.listen(port, console.log(`Listening on port ${port}`));
