@@ -5,7 +5,7 @@
 
 'use strict';
 
-let bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
    var Provider = sequelize.define('Provider', {
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             }
          },
          unique: {
-           msg: 'Validation error : email is already use'
+            msg: 'Validation error : email is already use'
          }
       },
       password: DataTypes.STRING,
@@ -34,6 +34,24 @@ module.exports = (sequelize, DataTypes) => {
       let saltRounds = 10;
       let salt = bcrypt.genSaltSync(saltRounds);
       let hash = bcrypt.hashSync(provider.password, salt);
+      provider.password = hash;
    });
+
+   Provider.prototype.loginCheck = function(password) {
+      if (bcrypt.compareSync(password, this.password)) {
+         return true;
+      } else {
+         return false;
+      }
+   };
+
+   Provider.findEmailLogin = (function(email) {
+      return Provider.findOne({
+         where: {
+            email: email
+         }
+      });
+   });
+
    return Provider;
 };
