@@ -1,3 +1,8 @@
+/*jshint esversion:6*/
+/*jshint -W097*/
+/*jshint -W117*/
+/*jshint -W030*/
+
 const app = require('express')();
 const bodyParser = require('body-parser');
 const port = 3000;
