@@ -55,7 +55,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/profile', (req, res, next) => {
-   res.render('providers/profile');
+Provider
+      .findById(req.session.user.id)
+      .then(provider => {
+         res.render('providers/profile', {
+            provider
+         });
+      });
 });
 
 module.exports = router;
