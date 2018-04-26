@@ -1,6 +1,10 @@
+/*jshint esversion:6*/
+/*jshint -W097*/
+/*jshint -W117*/
+/*jshint -W030*/
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-
   var OfferDatail = sequelize.define('OfferDatail', {
     customer_name: DataTypes.STRING, 
     service_name: DataTypes.STRING,

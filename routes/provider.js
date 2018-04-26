@@ -3,10 +3,8 @@
 /*jshint -W117*/
 /*jshint -W030*/
 
-const router = require('express').Router();
-const {
-   Provider
-} = require('../models');
+const router                  = require('express').Router();
+const { Provider }            = require('../models');
 const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
 
 
@@ -52,8 +50,8 @@ router.post('/login', registerLoginMiddleware, (req, res, next) => {
       .catch(err =>{
             res.render('customers/login-customer.ejs', {
                 err: 'Email not registered!'
-            })
-       })
+            });
+       });
 });
 
 router.get('/logout', (req, res) => {
@@ -65,7 +63,6 @@ router.get('/profile', (req, res) => {
    Provider
       .findById(req.session.user.id)
       .then(provider => {
-        console.log(provider);
          provider
             .getCustomers()
             .then(customer => {

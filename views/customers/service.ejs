@@ -14,18 +14,18 @@
     <li role="presentation"><a class="glyphicon glyphicon-exit" href="/provider/logout">LOGOUT</a></li>
   </ul>
   <hr>
-
-  <h3>Service List</h3>
+  <div>
   <form action='/customer/service' method='post'>
-    <p>Search by:
-      <select class="selectpicker" name='search_type' required>
-        <option value="name">name</option>
-        <option value="service">service</option>
-        <option value="price">price</option>
-    </select class="selectpicker" autofocus required> Keyword:
-      <input type='text' name='search'>
-    <input class="btn btn-primary" type='submit' value='Submit'></p>
-  </form>
+      Search by:
+      <select name='search_type' required>
+         <option value="name">name</option>
+         <option value="service">service</option>
+      </select > Keyword:
+     <input type='text' name='search'autofocus required>
+     <input class="btn btn-primary" type='submit' value='Submit'>
+   </form>
+<h3>Service List</h3>
+</div>
 
   <div class="container pull-left">
     <div class="row">
@@ -88,10 +88,5 @@
   </div>
 
 </body>
-
-
-
-
-
 
 </html>
