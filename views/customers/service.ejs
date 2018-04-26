@@ -18,15 +18,14 @@
   <h3>Service List</h3>
   <form action='/customer/service' method='post'>
     <p>Search by:
-      <select class="selectpicker" name='search_type' autofocus required>
+      <select class="selectpicker" name='search_type' required>
         <option value="name">name</option>
         <option value="service">service</option>
         <option value="price">price</option>
-    </select> Keyword:
+    </select class="selectpicker" autofocus required> Keyword:
       <input type='text' name='search'>
     <input class="btn btn-primary" type='submit' value='Submit'></p>
   </form>
-
 
   <div class="container pull-left">
     <div class="row">
