@@ -135,7 +135,6 @@ router.get('/service/buy/:id', (req, res)=>{
     })
     .then(result => {
         model.OfferDatail.create({
-            customer_name: customer.name,
             OfferId: result.id
         })
         res.render('customers/offerdetail.ejs')
@@ -146,19 +145,20 @@ router.get('/service/buy/:id', (req, res)=>{
 })
 
 router.post('/service/buy/:id', (req, res)=>{
-    model.OfferDatail.create({
+    model.OfferDatail.update({
         customer_name: req.body.customerName,
         service_name: req.body.serviceName,
         description: req.body.description, 
         bidding_price: req.body.biddingPrice,
-        OfferId: 1,
         status: 'pending'
+    },{
+        where: {id: 16}
     })
     .then(customer =>{
         res.redirect('/customer/profile');
     })
-    .catch( errors =>{
-        console.log(errors)
+    .catch(err =>{
+        console.log(err)
     });
  });
 
