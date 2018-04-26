@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   OfferDatail.associate = function(models) {
     // associations can be defined here
+    OfferDatail.belongsTo(models.Offer);
   };
   return OfferDatail;
 };
