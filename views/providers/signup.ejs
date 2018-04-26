@@ -14,13 +14,14 @@
     </ul>
     <hr>
 
-    <% if (typeof errors !== 'undefined') { %>
+    <% if (typeof err !== 'undefined') { %>
       <div class="alert alert-danger" role="alert">
-        <%= errors.message %>
+        <%= err.message %>
       </div>
       <% } %>
 
-        <h2>Signup Customer</h2>
+
+        <h2>Signup Provider</h2>
 
         <div class="row">
 
@@ -53,7 +54,8 @@
                     </div>
                   </div>
                 </div>
-                
+
+
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="form-group">
@@ -73,6 +75,7 @@
                     </div>
                   </div>
                 </div>
+
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>

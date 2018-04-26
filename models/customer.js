@@ -29,5 +29,21 @@ module.exports = (sequelize, DataTypes) => {
     customer.password = hash
   })
 
+  Customer.prototype.loginCheck = function(password) {
+    if (bcrypt.compareSync(password, this.password)) {
+       return true;
+    } else {
+       return false;
+    }
+ };
+
+ Customer.findEmailLogin = (function(email) {
+    return Customer.findOne({
+       where: {
+          email: email
+       }
+    });
+ });
+
   return Customer;
 };

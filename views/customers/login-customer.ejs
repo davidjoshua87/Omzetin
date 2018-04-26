@@ -11,13 +11,16 @@
     <h2>Welcome to OMZETIN</h2>
     <ul class="nav nav-pills">
       <li role="presentation"><a href="/">HOME</a></li>
-      <li role="presentation"><a href="/customer/signup">SIGNUP</a></li>
-      <li role="presentation"><a href="/customer/login">LOGIN</a></li>
-      <li role="presentation"><a href="/">LOGOUT</a></li>
     </ul>
     <hr>
 
-    <h2>login Customer</h2>
+    <% if ( err !== 'none') { %>
+      <div class="alert alert-danger" role="alert">
+        <%= err %>
+      </div>
+      <% } %>
+
+    <h2>Login Customer</h2>
 
     <center>
 
@@ -32,14 +35,14 @@
               <div class="row">
                 <div class="col-xs-6">
                   <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" value="" class="form-control" required>
+                    <label for="email">Email</label>
+                    <input type="text" name="email" value="" class="form-control" required>
                   </div>
                 </div>
                 <div class="col-xs-6">
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="text" name="password" value="" class="form-control" required>
+                    <input type="password" name="password" value="" class="form-control" required>
                   </div>
                 </div>
               </div>
