@@ -8,11 +8,10 @@ const {
    Provider
 } = require('../models');
 const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
-const authenticationMiddleware = require('../middlewares/authenticationMiddleware.js');
 
 
 router.get('/login', registerLoginMiddleware, (req, res, next) => {
-   res.render('providers/login');
+   res.render('providers/login', {err:'none'});
 });
 
 router.get('/signup', registerLoginMiddleware, (req, res, next) => {
@@ -55,7 +54,7 @@ router.get('/logout', (req, res) => {
    res.redirect('/');
 });
 
-router.get('/profile', authenticationMiddleware, (req, res, next) => {
+router.get('/profile', (req, res, next) => {
    res.render('providers/profile');
 });
 
