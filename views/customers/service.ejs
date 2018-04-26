@@ -1,0 +1,38 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>Service</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+ <body>
+     <h3>Service List</h3>
+     <form action='/customer/service' method='post'>
+    <p>Search by:
+    <select name='search_type'>
+        <option value="name">name</option>
+        <option value="service">service</option>
+        <option value="price">price</option>
+    </select>
+    Keyword:
+    <input type='text' name='search'></p>
+    <input type='submit' value='Submit'>
+    </form>
+     <table>
+         <tr>
+             <th>Id</th>
+             <th>Name</th>
+             <th>Email</th>
+             <th>Service</th>
+             <th>Price</th>
+         </tr>
+         <%for (let i = 0; i < providers.length; i++){%>
+             <tr>
+                 <td><%=providers[i].id%></td>
+                 <td><%=providers[i].name%></td>
+                 <td><%=providers[i].email%></td>
+                 <td><%=providers[i].service%></td>
+                 <td><%=formatCurency(providers[i].price)%></td>
+             </tr>
+        <% }%>
+     </table>
+ </body>

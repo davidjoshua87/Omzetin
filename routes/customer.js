@@ -3,6 +3,8 @@ const model = require('../models')
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const sequelize = require('sequelize')
+const op = sequelize.Op
 const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
 
 
@@ -92,6 +94,31 @@ router.get('/profile/delete', (req, res)=>{
     .catch(err=>{
         console.log(err)
     })
+})
+
+router.get('/service', (req, res)=>{
+    model.Provider.findAll()
+    .then(providers => {
+        res.render('customers/service.ejs',{providers});
+    })
+})
+
+router.post('/service', (req,res) => {
+    let keys = req.body.search_type;
+    let search = req.body.search;
+    // console.log("KEys" + keys);
+    // console.log("searcgh" + search);
+    model.Provider.findAll({
+        where:{
+            [keys]:{
+                [op.iLike]: '%'+search+'%'
+            }
+        }
+    })
+    .then((providers) => {
+        res.render('customers/service.ejs',{providers});
+    })
+
 })
 
 module.exports = router
