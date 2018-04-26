@@ -6,6 +6,8 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
 
 module.exports = (sequelize, DataTypes) => {
    var Provider = sequelize.define('Provider', {

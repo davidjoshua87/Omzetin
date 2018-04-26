@@ -6,80 +6,66 @@
 </head>
 
 <body>
-
   <div class="container">
     <h2>Welcome to OMZETIN</h2>
     <ul class="nav nav-pills">
       <li role="presentation"><a href="/">HOME</a></li>
     </ul>
     <hr>
-
     <% if (typeof errors !== 'undefined') { %>
-        <% errors.forEach(err =>{ %>
-            <div class="alert alert-danger" role="alert">
-                <%= err.message %>
-              </div>
-        <% }) %>
-      <% } %>
-
-        <h2>Offer Detail</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="well">
-              <form class="form" action="/customer/service/buy/<%= providerId %>" method="POST">
-
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="form-group">
-                      <label for="customerName">Customer Name</label>
-                      <input type="text" name="customerName" value="<%= customer.name %>" class="form-control" required>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="serviceName">Service Name</label>
-                      <input type="text" name="serviceName" value="<%= provider.service %>" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="description">Description</label>
-                      <input type="text" name="description" value="" class="form-control" required>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="biddingPrice">Bidding Price</label>
-                      <input type="text" name="biddingPrice" value="" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="description">Description</label>
-                      <input type="text" name="description" value="" class="form-control" required>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="/customer/profile" class="btn btn-default">Cancel</a>
-                </div>
-
-              </form>
-            </div>
-          </div>
+      <% errors.forEach(err =>{ %>
+        <div class="alert alert-danger" role="alert">
+          <%= err.message %>
         </div>
+        <% }) %>
+          <% } %>
+            <h2>Offer Detail</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="well">
+                  <form class="form" action="/customer/service/buy/:id" method="POST">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label for="customerName">Customer Name</label>
+                          <input type="text" name="customerName" value="" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label for="serviceName">Service Name</label>
+                          <input type="text" name="serviceName" value="" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label for="description">Description</label>
+                          <input type="text" name="description" value="" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label for="biddingPrice">Bidding Price</label>
+                          <input type="text" name="biddingPrice" value="" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <a href="/customer/profile" class="btn btn-default">Cancel</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
   </div>
 </body>
 <footer>
   <% include ../partials/footer %>
 </footer>
-</html>
 
+</html>
