@@ -1,5 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+
    var OfferDatail = sequelize.define('OfferDatail', {
       service_name: DataTypes.STRING,
       description: DataTypes.STRING,
@@ -12,3 +13,4 @@ module.exports = (sequelize, DataTypes) => {
    };
    return OfferDatail;
 };
+

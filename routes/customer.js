@@ -127,4 +127,39 @@ router.post('/service', (req,res) => {
 
 });
 
+router.get('/service/buy/:id', (req, res)=>{
+    let providerId = req.params.id
+    model.Offer.create({
+        CustomerId : req.session.user.id,
+        ProviderId : providerId 
+    })
+    .then(result => {
+        model.OfferDatail.create({
+            customer_name: customer.name,
+            OfferId: result.id
+        })
+        res.render('customers/offerdetail.ejs')
+    })
+    .catch(err =>{
+        console.log(err)
+    })
+})
+
+router.post('/service/buy/:id', (req, res)=>{
+    model.OfferDatail.create({
+        customer_name: req.body.customerName,
+        service_name: req.body.serviceName,
+        description: req.body.description, 
+        bidding_price: req.body.biddingPrice,
+        OfferId: 1,
+        status: 'pending'
+    })
+    .then(customer =>{
+        res.redirect('/customer/profile');
+    })
+    .catch( errors =>{
+        console.log(errors)
+    });
+ });
+
 module.exports = router;
