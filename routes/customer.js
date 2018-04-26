@@ -1,3 +1,4 @@
+
 const model = require('../models')
 const express = require('express')
 const router = express.Router()
@@ -19,9 +20,9 @@ router.post('/signup', registerLoginMiddleware, (req, res, next)=>{
        res.redirect('/customer/login')
    })
    .catch(( { errors } ) =>{
-       res.render('customers/register-customer.ejs', {errors})
-   }) 
-})
+       res.render('customers/register-customer.ejs', {errors});
+   });
+});
 
 router.post('/login', registerLoginMiddleware, (req, res, next) => {
     let email = req.body.email;
@@ -94,3 +95,4 @@ router.get('/profile/delete', (req, res)=>{
 })
 
 module.exports = router
+

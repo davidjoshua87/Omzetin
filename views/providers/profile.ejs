@@ -5,11 +5,15 @@
 </head>
 <body>
   <h2>Welcome to OMZETIN</h2>
+
+
+
   <ul class="nav nav-pills">
     <li role="presentation"><a class="glyphicon glyphicon-home" href="/">HOME</a></li>
     <li role="presentation"><a class="glyphicon glyphicon-exit" href="/provider/logout">LOGOUT</a></li>
   </ul>
   <hr>
+
   <div class="container pull-left">
     <div class="row">
       <div class="col-xs-9 col-sm-9 col-md-4 col-lg-4 toppad">
@@ -19,7 +23,9 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class=" col-md-7 col-lg-7 ">
+
+              <div class=" col-md-12 col-lg-12 ">
+
                 <table class="table table-user-information">
                   <tbody>
                     <tr>
@@ -42,13 +48,14 @@
                       <tr>
                         <td>Price:</td>
                         <td>
-                          <%= provider.price %>
+                          <%= formatCurency(provider.price) %>
                         </td>
                       </tr>
                   </tbody>
                 </table>
-                <a href="/providers/profile/edit" class="btn btn-primary">Edit|</a>
-                <a href="/providers/profile/delete" class="btn btn-primary">|Delete</a>
+
+                <a href="/provider/profile/edit" class="btn btn-primary">Edit|</a>
+                <a href="/provider/profile/delete" class="btn btn-primary">|Delete</a>
               </div>
             </div>
           </div>
@@ -56,38 +63,48 @@
       </div>
     </div>
   </div>
+
   <div class="container pull-left">
     <div class="row">
-      <div class="col-xs-9 col-sm-9 col-md-4 col-lg-4 toppad">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 toppad">
+
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Sheena Shrestha</h3>
+            <h3 class="panel-title">Offer List</h3>
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class=" col-md-7 col-lg-7 ">
+              <div class=" col-md-12 col-lg-12 ">
                 <table class="table table-user-information">
                   <tbody>
                     <tr>
-                      <td>Name:</td>
-                      <td>Udin Jago</td>
+                      <td>Name Customer:</td>
+                      <td>
+                        customer.name
+                      </td>
                     </tr>
                     <tr>
-                      <td>Email:</td>
-                      <td>udinjagi@jago.com</td>
+                      <td>Service Name:</td>
+                      <td>
+                       prodvider.service
+                      </td>
                     </tr>
                     <tr>
-                      <td>Service:</td>
-                      <td>Logo Designer</td>
+                      <td>description:</td>
+                      <td>
+                        OfferDetail.description
+                      </td>
                       <tr>
-                        <td>Price:</td>
-                        <td>300000</td>
+                        <td>Bidding Price:</td>
+                        <td>
+                          OfferDetail.bidding_price
+                        </td>
                       </tr>
                     </tr>
                   </tbody>
                 </table>
-                <a href="#" class="btn btn-primary">Portofolio</a>
-                <a href="#" class="btn btn-primary">List Offer</a>
+                <a href="#" class="btn btn-primary">Accept</a>
+                <a href="#" class="btn btn-primary">Decline</a>
               </div>
             </div>
           </div>
@@ -96,5 +113,6 @@
     </div>
   </div>
   </div>
+
 </body>
 </html>

@@ -14,53 +14,54 @@
     </ul>
     <hr>
 
-    <% if ( err !== 'none') { %>
+    <% if (err !== "none") { %>
       <div class="alert alert-danger" role="alert">
         <%= err %>
       </div>
       <% } %>
+
     <h2>Login Provider</h2>
 
-    <center>
+        <center>
 
-      <div class="row">
+          <div class="row">
 
-        <div class="col-md-6">
+            <div class="col-md-6">
 
-          <div class="well">
+              <div class="well">
 
-            <form class="form" action="/provider/login" method="POST">
+                <form class="form" action="/provider/login" method="POST">
 
-              <div class="row">
-                <div class="col-xs-6">
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" value="" class="form-control" required>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" value="" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" value="" class="form-control" required>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="col-xs-6">
+
+
                   <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" value="" class="form-control" required>
+                    <button type="submit" class="btn btn-primary">login</button>
+                    <a href="/login" class="btn btn-default">Cancel</a>
                   </div>
-                </div>
+
+                </form>
+
               </div>
 
-
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">login</button>
-                <a href="/login" class="btn btn-default">Cancel</a>
-              </div>
-
-            </form>
+            </div>
 
           </div>
 
-        </div>
-
-      </div>
-
-    </center>
+        </center>
 
   </div>
 
