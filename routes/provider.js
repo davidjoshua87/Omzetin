@@ -8,7 +8,6 @@ const {
    Provider
 } = require('../models');
 const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
-const authenticationMiddleware = require('../middlewares/authenticationMiddleware.js');
 
 
 router.get('/login', registerLoginMiddleware, (req, res, next) => {
@@ -62,14 +61,15 @@ router.get('/logout', (req, res) => {
    res.redirect('/');
 });
 
-router.get('/profile', authenticationMiddleware, (req, res, next) => {
-   Provider
+router.get('/profile', (req, res, next) => {
+Provider
       .findById(req.session.user.id)
       .then(provider => {
          res.render('providers/profile', {
             provider
          });
       });
+
 });
 
 router.get('/profile/edit', (req, res) => {
@@ -115,6 +115,7 @@ router.post('/profile/edit', (req, res) => {
          console.log(err);
       });
 });
+
 router.get('/profile/delete/', (req, res) => {
    Provider
       .destroy({
