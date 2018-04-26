@@ -61,15 +61,21 @@ router.get('/logout', (req, res) => {
    res.redirect('/');
 });
 
-router.get('/profile', (req, res, next) => {
-Provider
+router.get('/profile', (req, res) => {
+   Provider
       .findById(req.session.user.id)
       .then(provider => {
-         res.render('providers/profile', {
-            provider
-         });
+        console.log(provider);
+         provider
+            .getCustomers()
+            .then(customer => {
+              console.log(customer);
+               // res.render('providers/profile', {
+               //    provider,
+               //    customer
+               // });
+            });
       });
-
 });
 
 router.get('/profile/edit', (req, res) => {
