@@ -1,11 +1,11 @@
 
-const app = require('express')();
-const bodyParser = require('body-parser');
-const port = 3000;
-
-const indexRoutes = require('./routes');
+const app             = require('express')();
+const bodyParser      = require('body-parser');
+const port            = 3000;
+const indexRoutes     = require('./routes');
 const providersRoutes = require('./routes/provider');
-const routeCustomer = require('./routes/customer')
+const routeCustomer   = require('./routes/customer');
+const session         = require('express-session');
 
 
 // Template Engine
@@ -17,10 +17,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use(session({
+   secret: "express secret key",
+   resave: false,
+   saveUninitialized: true
+}));
+
 // Routes
 app.use('/', indexRoutes);
-app.use('/', providersRoutes);
-app.use('/', routeCustomer)
+app.use('/provider', providersRoutes);
+app.use('/customer', routeCustomer);
 
 // -----------------------------------------------------------------------------
 app.listen(port, console.log(`Listening on port ${port}`));
