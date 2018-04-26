@@ -36,10 +36,15 @@ router.post('/login', registerLoginMiddleware, (req, res, next) => {
              res.redirect('/customer/profile');
           } else {
              res.render('customers/login-customer.ejs', {
-                err: 'wrong email/password'
-             });
+                err: 'Wrong password!'
+             })
           }
-       });
+       })
+       .catch(err =>{
+            res.render('customers/login-customer.ejs', {
+                err: 'Email not registered!'
+            })
+       })
  });
  
 router.get('/logout', (req, res) => {
