@@ -4,7 +4,7 @@
 /*jshint -W030*/
 
 'use strict';
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
    var Customer = sequelize.define('Customer', {
