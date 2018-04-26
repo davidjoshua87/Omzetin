@@ -2,7 +2,7 @@
 /*jshint -W097*/
 /*jshint -W117*/
 /*jshint -W030*/
-
+const authenticationMiddleware = require('../middlewares/authenticationMiddleware.js');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
@@ -11,6 +11,10 @@ router.get('/', (req, res) => {
 
 router.get('/signup', (req, res) => {
    res.render('signup');
+});
+
+router.get('/profile', authenticationMiddleware, (req, res) => {
+  res.render('profile');
 });
 
 router.get('/login', (req, res) => {

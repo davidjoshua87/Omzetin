@@ -7,20 +7,22 @@ const router = require('express').Router();
 const {
    Provider
 } = require('../models');
+const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
 
-router.get('/login/provider', (req, res) => {
-   res.render('providers/login');
+
+router.get('/login', registerLoginMiddleware, (req, res, next) => {
+   res.render('providers/login', {err:'none'});
 });
 
-router.get('/signup/provider', (req, res) => {
+router.get('/signup', registerLoginMiddleware, (req, res, next) => {
    res.render('providers/signup');
 });
 
-router.post('/signup/provider', (req, res) => {
+router.post('/signup', registerLoginMiddleware, (req, res, next) => {
    Provider
       .create(req.body)
       .then(result => {
-         res.redirect('/login/provider');
+         res.redirect('/provider/login');
       })
       .catch((err) => {
          res.render('providers/signup', {
@@ -30,10 +32,30 @@ router.post('/signup/provider', (req, res) => {
       });
 });
 
+router.post('/login', registerLoginMiddleware, (req, res, next) => {
+   let email = req.body.email;
+   let password = req.body.password;
+   Provider
+      .findEmailLogin(email)
+      .then(user => {
+         if (user.loginCheck(password)) {
+            req.session.user = user;
+            res.redirect('/provider/profile');
+         } else {
+            res.render('providers/login', {
+               err: 'wrong email/password'
+            });
+         }
+      });
+});
 
-//
-// router.post('/login', (req, res) => {
-//    res.render('providers/login');
-// });
+router.get('/logout', (req, res) => {
+   delete req.session.user;
+   res.redirect('/');
+});
+
+router.get('/profile', (req, res, next) => {
+   res.render('providers/profile');
+});
 
 module.exports = router;
