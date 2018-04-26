@@ -39,14 +39,58 @@ router.post('/login', registerLoginMiddleware, (req, res, next) => {
        });
  });
  
- router.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     delete req.session.user;
     res.redirect('/');
- });
+});
  
- router.get('/profile', (req, res, next) => {
-    res.render('customers/profile');
- });
+router.get('/profile', (req, res, next) => {
+    model.Customer.findById(req.session.user.id)
+    .then(customer =>{
+        res.render('customers/profile', {customer})
+    })
+    .catch(err =>{
+        console.log(err)
+    })
+});
  
+router.get('/profile/edit', (req, res)=>{    
+    model.Customer.findById(req.session.user.id)
+    .then(customer=>{
+        res.render('customers/edit-customer.ejs', {customer})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+
+router.post('/profile/edit', (req, res)=>{
+    let id = req.session.user.id
+    model.Customer.update({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    },{
+        where: {id: id},
+        individualHooks: true
+    })
+    .then(result=>{
+        res.redirect('/customer/profile')
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+
+router.get('/profile/delete', (req, res)=>{
+    model.Customer.destroy({where: {id: req.session.user.id}})
+    .then(result=>{
+        delete req.session.user
+        res.redirect('/')
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 module.exports = router
