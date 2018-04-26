@@ -4,33 +4,33 @@
 /*jshint -W030*/
 
 'use strict';
+
 const {
    sequelize
 } = require('../models');
 
 module.exports = {
    up: (queryInterface, Sequelize) => {
-      return queryInterface.createTable('Providers', {
+      return queryInterface.createTable('OfferDatails', {
          id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
          },
-         name: {
+         customer_name: {
             type: Sequelize.STRING
          },
-         email: {
-            type: Sequelize.STRING,
-            unique: true
-         },
-         password: {
+         service_name: {
             type: Sequelize.STRING
          },
-         service: {
+         description: {
             type: Sequelize.STRING
          },
-         price: {
+         bidding_price: {
+            type: Sequelize.INTEGER
+         },
+         OfferId: {
             type: Sequelize.INTEGER
          },
          createdAt: {
@@ -46,6 +46,6 @@ module.exports = {
       });
    },
    down: (queryInterface, Sequelize) => {
-      return queryInterface.dropTable('Providers');
+      return queryInterface.dropTable('OfferDatails');
    }
 };
