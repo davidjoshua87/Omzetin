@@ -7,15 +7,115 @@
 
 <body>
   <h2>Welcome to OMZETIN</h2>
+
+
+
   <ul class="nav nav-pills">
-    <li role="presentation"><a href="/">HOME</a></li>
-    <li role="presentation"><a href="/provider/logout">LOGOUT</a></li>
+    <li role="presentation"><a class="glyphicon glyphicon-home" href="/">HOME</a></li>
+    <li role="presentation"><a class="glyphicon glyphicon-exit" href="/provider/logout">LOGOUT</a></li>
   </ul>
   <hr>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+  <div class="container pull-left">
+    <div class="row">
+      <div class="col-xs-9 col-sm-9 col-md-4 col-lg-4 toppad">
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= provider.name %></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class=" col-md-12 col-lg-12 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>Name:</td>
+                      <td>
+                        <%= provider.name %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Email:</td>
+                      <td>
+                        <%= provider.email %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Service:</td>
+                      <td>
+                        <%= provider.service %>
+                      </td>
+                      <tr>
+                        <td>Price:</td>
+                        <td>
+                          <%= formatCurency(provider.price) %>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+                <a href="/provider/profile/edit" class="btn btn-primary">Edit|</a>
+                <a href="/provider/profile/delete" class="btn btn-primary">|Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container pull-left">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 toppad">
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Offer List</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class=" col-md-12 col-lg-12 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>Name Customer:</td>
+                      <td>
+                        customer.name
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Service Name:</td>
+                      <td>
+                       prodvider.service
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>description:</td>
+                      <td>
+                        OfferDetail.description
+                      </td>
+                      <tr>
+                        <td>Bidding Price:</td>
+                        <td>
+                          OfferDetail.bidding_price
+                        </td>
+                      </tr>
+                    </tr>
+                  </tbody>
+                </table>
+                <a href="#" class="btn btn-primary">Accept</a>
+                <a href="#" class="btn btn-primary">Decline</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
 
 </body>
 

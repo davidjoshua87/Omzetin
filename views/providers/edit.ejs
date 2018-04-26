@@ -20,7 +20,7 @@
       </div>
       <% } %>
 
-        <h2>Signup Provider</h2>
+        <h2>Edit Provider</h2>
 
         <div class="row">
 
@@ -28,13 +28,13 @@
 
             <div class="well">
 
-              <form class="form" action="/provider/signup" method="POST">
+              <form class="form" action="/provider/profile/edit" method="POST">
 
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="form-group">
                       <label for="name">Name</label>
-                      <input type="text" name="name" value="" class="form-control" required>
+                      <input type="text" name="name" value="<%= provider.name %>" class="form-control" required>
                     </div>
                   </div>
                 </div>
@@ -43,13 +43,13 @@
                   <div class="col-xs-6">
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="text" name="email" value="" class="form-control" required>
+                      <input type="text" name="email" value="<%= provider.email %>" class="form-control" required>
                     </div>
                   </div>
                   <div class="col-xs-6">
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" name="password" value="" class="form-control" required>
+                      <input type="password" name="password" value="<%= provider.password %>" class="form-control" required>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="col-xs-6">
                     <div class="form-group">
                       <label for="price">Price</label>
-                      <input type="text" name="price" value="" class="form-control" required>
+                      <input type="text" name="price" value="<%= provider.price %>" class="form-control" required>
                     </div>
                   </div>
                 </div>
@@ -78,7 +78,7 @@
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="/signup" class="btn btn-default">Cancel</a>
+                  <a href="/provider/profile" class="btn btn-default">Cancel</a>
                 </div>
 
               </form>

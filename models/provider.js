@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
    }, {});
    Provider.associate = function(models) {
       // associations can be defined here
+      Provider.hasMany(models.Offer);
+      Provider.belongsToMany(models.Customer, {
+         through: models.Offer
+      });
    };
 
    Provider.hook('beforeSave', (provider, options) => {

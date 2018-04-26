@@ -1,3 +1,7 @@
+/*jshint esversion:6*/
+/*jshint -W097*/
+/*jshint -W117*/
+/*jshint -W030*/
 
 const app             = require('express')();
 const bodyParser      = require('body-parser');
@@ -7,6 +11,8 @@ const providersRoutes = require('./routes/provider');
 const routeCustomer   = require('./routes/customer');
 const session         = require('express-session');
 
+//helpers
+app.locals.formatCurency = require('./helpers/formatCurency.js');
 
 // Template Engine
 app.set('view engine', 'ejs');
