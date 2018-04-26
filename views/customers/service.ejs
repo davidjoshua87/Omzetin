@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <h2>Welcome to OMZETIN</h2>
+
+
+  <ul class="nav nav-pills">
+    <li role="presentation"><a class="glyphicon glyphicon-home" href="/">HOME</a></li>
+    <li role="presentation"><a class="glyphicon glyphicon-exit" href="/provider/logout">LOGOUT</a></li>
+  </ul>
+  <hr>
+
+  <h3>Service List</h3>
+  <form action='/customer/service' method='post'>
+    <p>Search by:
+      <select class="selectpicker" name='search_type' required>
+        <option value="name">name</option>
+        <option value="service">service</option>
+        <option value="price">price</option>
+    </select class="selectpicker" autofocus required> Keyword:
+      <input type='text' name='search'>
+    <input class="btn btn-primary" type='submit' value='Submit'></p>
+  </form>
+
+  <div class="container pull-left">
+    <div class="row">
+      <div class="col-xs-9 col-sm-9 col-md-4 col-lg-4 toppad">
+        <% providers.forEach((provider, index) =>{ %>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= providers.name %></h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class=" col-md-12 col-lg-12 ">
+
+                  <table class="table table-user-information">
+
+                    <tbody>
+                      <tr>
+                        <td>No:</td>
+                        <td>
+                          <%= index + 1 %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Name:</td>
+                        <td>
+                          <%= provider.name %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Email:</td>
+                        <td>
+                          <%= provider.email %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Service:</td>
+                        <td>
+                          <%= provider.service %>
+                        </td>
+                        <tr>
+                          <td>Price:</td>
+                          <td>
+                            <%= formatCurency(provider.price) %>
+                          </td>
+                        </tr>
+                    </tbody>
+
+
+                  </table>
+
+                  <a href="/customer/service/buy/<%= provider.id %>" class="btn btn-primary">BUY</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+
+
+
+
+</html>

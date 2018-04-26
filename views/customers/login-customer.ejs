@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login Customer</title>
-    </head>
-    <body>
-        <h1>Customer Login</h1>
-        <form action="/login/customer" method="post">
-            Name: <br>
-            <input type="text" name="name" value=""><br>
-            Email: <br>
-            <input type="text" name="email" value=""><br>
-            Password: <br>
-            <input type="password" name="password" value=""><br>
-            <br>
-            <button type="submit">Submit</button>
-        </form>
-    </body>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Welcome to OMZETIN</h2>
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="/">HOME</a></li>
+    </ul>
+    <hr>
+
+    <% if ( err !== 'none') { %>
+      <div class="alert alert-danger" role="alert">
+        <%= err %>
+      </div>
+      <% } %>
+
+    <h2>Login Customer</h2>
+
+    <center>
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="well">
+
+            <form class="form" action="/customer/login" method="POST">
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" value="" class="form-control" required>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" value="" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">login</button>
+                <a href="/login" class="btn btn-default">Cancel</a>
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </center>
+
+  </div>
+
+</body>
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+
 </html>
