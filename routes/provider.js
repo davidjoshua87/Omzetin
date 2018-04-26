@@ -69,11 +69,10 @@ router.get('/profile', (req, res) => {
          provider
             .getCustomers()
             .then(customer => {
-              console.log(customer);
-               // res.render('providers/profile', {
-               //    provider,
-               //    customer
-               // });
+               res.render('providers/profile', {
+                  provider,
+                  customer
+               });
             });
       });
 });
