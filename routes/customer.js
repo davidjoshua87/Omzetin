@@ -150,44 +150,40 @@ router.post('/service', (req, res) => {
 
 });
 
-router.get('/service/buy/:id', (req, res) => {
-   let providerId = req.params.id;
-   model.Offer.create({
-         CustomerId: req.session.user.id,
-         ProviderId: providerId
-      })
-      .then(result => {
-         model.OfferDatail.create({
-               customer_name: customer.name,
-               OfferId: result.id
-            })
-            .then(offer => {
-               res.render('customers/offerdetail.ejs', {
-                  offer
-               });
-            });
 
-      })
-      .catch(err => {
-         console.log(err);
-      });
-});
+router.get('/service/buy/:id', (req, res)=>{
+    let providerId = req.params.id
+    model.Offer.create({
+        CustomerId : req.session.user.id,
+        ProviderId : providerId 
+    })
+    .then(result => {
+        model.OfferDatail.create({
+            OfferId: result.id
+        })
+        res.render('customers/offerdetail.ejs')
+    })
+    .catch(err =>{
+        console.log(err)
+    })
+})
 
-router.post('/service/buy/:id', (req, res) => {
-   model.OfferDatail.create({
-         customer_name: req.body.customerName,
-         service_name: req.body.serviceName,
-         description: req.body.description,
-         bidding_price: req.body.biddingPrice,
-         OfferId: 1,
-         status: 'pending'
-      })
-      .then(customer => {
-         res.redirect('/customer/profile');
-      })
-      .catch(errors => {
-         console.log(errors);
-      });
-});
+router.post('/service/buy/:id', (req, res)=>{
+    model.OfferDatail.update({
+        customer_name: req.body.customerName,
+        service_name: req.body.serviceName,
+        description: req.body.description, 
+        bidding_price: req.body.biddingPrice,
+        status: 'pending'
+    },{
+        where: {id: 16}
+    })
+    .then(customer =>{
+        res.redirect('/customer/profile');
+    })
+    .catch(err =>{
+        console.log(err)
+    });
+ });
 
 module.exports = router;
