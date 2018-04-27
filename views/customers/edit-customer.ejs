@@ -14,14 +14,15 @@
     </ul>
     <hr>
 
-    <% if (typeof err !== 'undefined') { %>
-      <div class="alert alert-danger" role="alert">
-        <%= err.message%>
-      </div>
+    <% if (typeof errors !== 'undefined') { %>
+        <% errors.forEach(err =>{ %>
+            <div class="alert alert-danger" role="alert">
+                <%= err.message %>
+              </div>
+        <% }) %>
       <% } %>
 
-
-        <h2>Signup Provider</h2>
+        <h2>Edit Customer</h2>
 
         <div class="row">
 
@@ -29,13 +30,13 @@
 
             <div class="well">
 
-              <form class="form" action="/provider/signup" method="POST">
+              <form class="form" action="/customer/profile/edit" method="POST">
 
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="form-group">
                       <label for="name">Name</label>
-                      <input type="text" name="name" value="" class="form-control" required>
+                      <input type="text" name="name" value="<%= customer.name %>" class="form-control" required>
                     </div>
                   </div>
                 </div>
@@ -44,7 +45,7 @@
                   <div class="col-xs-6">
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="text" name="email" value="" class="form-control" required>
+                      <input type="text" name="email" value="<%= customer.email %>" class="form-control" required>
                     </div>
                   </div>
                   <div class="col-xs-6">
@@ -55,31 +56,9 @@
                   </div>
                 </div>
 
-
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="service">Service</label><br>
-                      <select class="form-control" name="service" autofocus required>
-                        <option value="logo">Logo</option>
-                        <option value="web">Design Web</option>
-                        <option value="poster">Poster</option>
-                        <option value="banner">Banner</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="text" name="price" value="" class="form-control" required>
-                    </div>
-                  </div>
-                </div>
-
-
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="/signup" class="btn btn-default">Cancel</a>
+                  <a href="/customer/profile" class="btn btn-default">Cancel</a>
                 </div>
 
               </form>
