@@ -2,12 +2,12 @@
 /*jshint -W097*/
 /*jshint -W117*/
 /*jshint -W030*/
-const model = require('../models');
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
-const sequelize = require('sequelize');
-const op = sequelize.Op;
+
+const router                  = require('express').Router();
+const model                   = require('../models');
+const bcrypt                  = require('bcrypt');
+const sequelize               = require('sequelize');
+const op                      = sequelize.Op;
 const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
 
 
@@ -66,9 +66,14 @@ router.get('/logout', (req, res) => {
 router.get('/profile', (req, res, next) => {
    model.Customer.findById(req.session.user.id)
       .then(customer => {
-         res.render('customers/profile', {
-            customer
-         });
+         if (customer == null) {
+            res.redirect('/');
+         } else {
+            res.render('customers/profile', {
+               customer
+            });
+         }
+
       })
       .catch(err => {
          console.log(err);
@@ -123,12 +128,18 @@ router.get('/profile/delete', (req, res) => {
 });
 
 router.get('/service', (req, res) => {
-   model.Provider.findAll()
-      .then(providers => {
-         res.render('customers/service.ejs', {
-            providers
-         });
+   model.Customer
+      .findById(req.session.user.id)
+      .then(customer => {
+         model.Provider.findAll()
+            .then(providers => {
+               res.render('customers/service.ejs', {
+                  providers,
+                  customer
+               });
+            });
       });
+
 });
 
 router.post('/service', (req, res) => {
@@ -142,48 +153,52 @@ router.post('/service', (req, res) => {
          }
       })
       .then((providers) => {
-        console.log(providers);
-         // res.render('customers/service.ejs', {
-         //    providers
-         // });
+         res.render('customers/service.ejs', {
+            providers
+         });
       });
 
 });
 
 
-router.get('/service/buy/:id', (req, res)=>{
-    let providerId = req.params.id
-    model.Offer.create({
-        CustomerId : req.session.user.id,
-        ProviderId : providerId 
-    })
-    .then(result => {
-        model.OfferDatail.create({
+router.get('/service/buy/:id', (req, res) => {
+   let providerId = req.params.id;
+   model.Offer.create({
+         CustomerId: req.session.user.id,
+         ProviderId: providerId
+      })
+      .then(result => {
+         model.OfferDatail.create({
             OfferId: result.id
-        })
-        res.render('customers/offerdetail.ejs')
-    })
-    .catch(err =>{
-        console.log(err)
-    })
-})
+         });
 
-router.post('/service/buy/:id', (req, res)=>{
-    model.OfferDatail.update({
-        customer_name: req.body.customerName,
-        service_name: req.body.serviceName,
-        description: req.body.description, 
-        bidding_price: req.body.biddingPrice,
-        status: 'pending'
-    },{
-        where: {id: 16}
-    })
-    .then(customer =>{
-        res.redirect('/customer/profile');
-    })
-    .catch(err =>{
-        console.log(err)
-    });
- });
+         res.render('customers/offerdetail.ejs', {
+            result:result
+         });
+      })
+      .catch(err => {
+         console.log(err);
+      });
+});
+
+router.post('/service/buy/:id', (req, res) => {
+   model.OfferDatail.update({
+         customer_name: req.body.customerName,
+         service_name: req.body.serviceName,
+         description: req.body.description,
+         bidding_price: req.body.biddingPrice,
+         status: 'pending'
+      }, {
+         where: {
+            id: 16
+         }
+      })
+      .then(customer => {
+         res.redirect('/customer/profile');
+      })
+      .catch(err => {
+         console.log(err);
+      });
+});
 
 module.exports = router;

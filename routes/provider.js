@@ -4,7 +4,12 @@
 /*jshint -W030*/
 
 const router                  = require('express').Router();
-const { Provider }            = require('../models');
+const {
+   Provider,
+   Customer,
+   OfferDatail,
+   Offer
+}                             = require('../models');
 const registerLoginMiddleware = require('../middlewares/registerLoginMiddleware.js');
 
 
@@ -47,11 +52,11 @@ router.post('/login', registerLoginMiddleware, (req, res, next) => {
             });
          }
       })
-      .catch(err =>{
-            res.render('customers/login-customer.ejs', {
-                err: 'Email not registered!'
-            });
-       });
+      .catch(err => {
+         res.render('customers/login-customer.ejs', {
+            err: 'Email not registered!'
+         });
+      });
 });
 
 router.get('/logout', (req, res) => {
@@ -63,14 +68,13 @@ router.get('/profile', (req, res) => {
    Provider
       .findById(req.session.user.id)
       .then(provider => {
-         provider
-            .getCustomers()
-            .then(customer => {
-               res.render('providers/profile', {
-                  provider,
-                  customer
-               });
+         if (provider == null) {
+            res.redirect('/');
+         } else {
+            res.render('providers/profile', {
+               provider
             });
+         }
       });
 });
 
@@ -131,5 +135,19 @@ router.get('/profile/delete/', (req, res) => {
       });
 });
 
+router.get('/offer', (req, res) => {
+   Provider
+      .findById(req.session.user.id)
+      .then(provider => {
+         Customer.findAll()
+            .then(customers => {
+               res.render('providers/offer.ejs', {
+                  provider,
+                  customers
+               });
+            });
+      });
+
+});
 
 module.exports = router;
