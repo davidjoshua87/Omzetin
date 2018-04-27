@@ -7,17 +7,17 @@
   <% include ../partials/title %>
   <ul class="nav nav-pills">
     <li role="presentation"><a class="glyphicon glyphicon-home" href="/">HOME</a></li>
-    <li role="presentation"><a class="glyphicon glyphicon-home" href="/provider/offer">OFFER LIST</a></li>
     <li role="presentation"><a class="glyphicon glyphicon-exit" href="/provider/logout">LOGOUT</a></li>
   </ul>
   <hr>
 
   <div class="container pull-left">
     <div class="row">
-      <div class="col-xs-9 col-sm-9 col-md-4 col-lg-4 toppad">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 toppad">
+
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title"><%= provider.name %></h3>
+            <h3 class="panel-title">Offer List</h3>
           </div>
           <div class="panel-body">
             <div class="row">
@@ -25,39 +25,40 @@
                 <table class="table table-user-information">
                   <tbody>
                     <tr>
-                      <td>Name:</td>
+                      <td>Name Customer:</td>
                       <td>
-                        <%= provider.name %>
+                        <% customers.name %>
                       </td>
                     </tr>
                     <tr>
-                      <td>Email:</td>
+                      <td>Service Name:</td>
                       <td>
-                        <%= provider.email %>
+                      <% provider.service %>
                       </td>
                     </tr>
                     <tr>
-                      <td>Service:</td>
+                      <td>description:</td>
                       <td>
-                        <%= provider.service %>
+                        OfferDetail.description
                       </td>
                       <tr>
-                        <td>Price:</td>
+                        <td>Bidding Price:</td>
                         <td>
-                          <%= formatCurency(provider.price) %>
+                         OfferDetail.bidding_price
                         </td>
                       </tr>
+                    </tr>
                   </tbody>
                 </table>
-
-                <a href="/provider/profile/edit" class="btn btn-primary">Edit</a>
-                <a href="/provider/profile/delete" class="btn btn-primary">Delete</a>
+                <a href="/provider/profile" onclick="return alert('Request Sent!')"class="btn btn-primary">Accept</a>
+                <a href="/provider/profile" onclick="return alert('Request Sent!')"class="btn btn-primary">Decline</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
 </body>

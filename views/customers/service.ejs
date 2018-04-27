@@ -6,9 +6,7 @@
 </head>
 
 <body>
-  <h2>Welcome to OMZETIN</h2>
-
-
+  <% include ../partials/title %>
   <ul class="nav nav-pills">
     <li role="presentation"><a class="glyphicon glyphicon-home" href="/">HOME</a></li>
     <li role="presentation"><a class="glyphicon glyphicon-exit" href="/provider/logout">LOGOUT</a></li>
@@ -84,9 +82,10 @@
           </div>
           <% }) %>
       </div>
+
     </div>
   </div>
-
+<a href="/customer/profile" class="btn btn-primary">&larr; Back to Profile</a>
 </body>
 
 </html>
